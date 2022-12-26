@@ -1,0 +1,48 @@
+<html>
+    <head>
+        <title>
+            <%=title%>
+        </title>
+        <script src="https://kit.fontawesome.com/467abf6cad.js" crossorigin="anonymous"></script>
+        <!-- our css should be below all other styles so that we can override it  -->
+        <link rel="stylesheet" href="/css/home.css">
+    </head>
+    <body>
+        <!-- <h1>
+            Rendered from EJS view!
+        </h1> -->
+        <h1 id="page-heading">
+            <i class="fas fa-address-book"></i>
+            MY contacts list
+        </h1>
+        <div id="contacts-list-container">
+            <ul>
+                <% for(let i of contact_list){%>
+                    <li class="contact">
+                        <div class="details">
+                            <p><%=i.name %></p>
+                            <p><%=i.phone %></p>
+                        </div>
+                        <!-- delete button -->
+                        <div class="delete-button">
+                            <!-- <a href="/delete-contact/?phone=<%= i.phone %>"> -->
+                            <!-- changing phone to id becoz unique hoti h id sabki  -->
+                                <a href="/delete-contact/?id=<%= i._id %>">
+                               <i class="fas fa-window-close"></i>
+                            </a>
+                        </div>
+                    </li>
+                <%}%>    
+            </ul>
+        </div>
+        <form id="new-contact-form" method="post" action="/create-contact">
+            <input type="text" placeholder="Enter name" required name="name">
+            <input type="number" placeholder="Enter number" required name="phone">
+
+            <button type="submit">Add</button> 
+        </form>
+
+        <script type="text/javascript" src="/js/home.js"></script>
+
+    </body>
+</html>
